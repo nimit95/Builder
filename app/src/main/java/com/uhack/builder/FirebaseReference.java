@@ -15,6 +15,7 @@ public class FirebaseReference extends Application {
     public static FirebaseDatabase database;
     public static DatabaseReference projectReference;
     public static DatabaseReference builderReference;
+    public static DatabaseReference inventoryReference;
 
 
     @Override
@@ -28,6 +29,7 @@ public class FirebaseReference extends Application {
 
         projectReference = database.getReference().child("Projects");
         builderReference = database.getReference().child("Builder");
+        inventoryReference = database.getReference().child("Inventory");
 
     }
 }
