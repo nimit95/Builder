@@ -5,9 +5,10 @@ package com.uhack.builder.model;
  */
 
 public class Inventory {
-    public String InventoryId, InventoryName, InventoryQty;
+    private String InventoryId, InventoryName;
+    private int InventoryQty;
 
-    public Inventory(String inventoryId, String inventoryName, String inventoryQty) {
+    public Inventory(String inventoryId, String inventoryName, int inventoryQty) {
 
         InventoryId = inventoryId;
         InventoryName = inventoryName;
@@ -22,7 +23,7 @@ public class Inventory {
         return InventoryName;
     }
 
-    public String getInventoryQty() {
+    public int getInventoryQty() {
         return InventoryQty;
     }
 
@@ -34,7 +35,7 @@ public class Inventory {
         InventoryName = inventoryName;
     }
 
-    public void setInventoryQty(String inventoryQty) {
+    public void setInventoryQty(int inventoryQty) {
         InventoryQty = inventoryQty;
     }
 }

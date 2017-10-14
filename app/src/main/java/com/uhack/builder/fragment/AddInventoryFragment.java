@@ -81,7 +81,7 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
         databaseReference.setValue(new Inventory(
                 databaseReference.getKey(),
                 etInventoryName.getText().toString(),
-                etInventoryQty.getText().toString()
+                Integer.parseInt(etInventoryQty.getText().toString())
         ));
 
        /* FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))
@@ -91,11 +91,5 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
         getDialog().dismiss();
     }
 
-    private static ArrayList<String> getList() {
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("1");
-        arrayList.add("2");
-        arrayList.add("3");
-        return arrayList;
-    }
+
 }
