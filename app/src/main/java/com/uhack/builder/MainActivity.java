@@ -26,8 +26,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.uhack.builder.utils.SuperPrefs;
+
+import java.util.HashMap;
 
 import dmax.dialog.SpotsDialog;
+import uhack.contractor.model.Builder;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
@@ -192,7 +196,9 @@ public class MainActivity extends AppCompatActivity implements
             mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
             mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
-
+            SuperPrefs.newInstance(MainActivity.this).setString("user-id", user.getUid());
+            HashMap<String, Builder> map = new HashMap<>();
+            
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
