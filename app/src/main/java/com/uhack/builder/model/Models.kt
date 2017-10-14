@@ -11,4 +11,3 @@ data class Project(val Name: String, val Address:String,
 
 data class Builder(val Name: String, val Phone:String, val BuilderId:String,
                    val EmailId: String, val ProjectIDs: ArrayList<String>)
-

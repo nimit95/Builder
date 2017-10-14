@@ -88,6 +88,9 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
                 new ArrayList<Integer>()
         ));
 
+        FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))
+                .child(FirebaseLinks.PROJECT_IDS).push().setValue(databaseReference.getKey());
+        getDialog().dismiss();
     }
 
     private static ArrayList<String> getList(){

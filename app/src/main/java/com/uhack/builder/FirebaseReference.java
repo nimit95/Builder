@@ -14,6 +14,8 @@ public class FirebaseReference extends Application {
 
     public static FirebaseDatabase database;
     public static DatabaseReference projectReference;
+    public static DatabaseReference builderReference;
+
 
     @Override
     public void onCreate() {
@@ -21,6 +23,11 @@ public class FirebaseReference extends Application {
 
         FirebaseApp.initializeApp(getApplicationContext());
         database = FirebaseDatabase.getInstance();
+
         projectReference = database.getReference();
+
+        projectReference = database.getReference().child("Projects");
+        builderReference = database.getReference().child("Builder");
+
     }
 }
