@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.uhack.builder.R;
+import com.uhack.builder.fragment.ContractorsFragment;
+import com.uhack.builder.fragment.dialogs.AddContractor;
 
 public class ProjectDetails extends AppCompatActivity {
 
@@ -139,6 +141,9 @@ public class ProjectDetails extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+
+            if(position ==0)
+                return new ContractorsFragment();
             return PlaceholderFragment.newInstance(position + 1);
 
         }
