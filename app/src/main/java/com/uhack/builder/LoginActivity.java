@@ -15,8 +15,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.uhack.builder.utils.FirebaseLinks;
 import com.uhack.builder.utils.SuperPrefs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import uhack.contractor.model.Builder;
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void login(String email, String password) {
+    private void login(final String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -68,13 +70,17 @@ public class LoginActivity extends AppCompatActivity {
                         else {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             if (user!=null) {
-                                SuperPrefs.newInstance(LoginActivity.this).setString("user-id", user.getUid());
+                                SuperPrefs.newInstance(LoginActivity.this).setString(FirebaseLinks.BUILDER_ID,
+                                        user.getUid());
                                 Log.d(TAG, "onComplete: " + user.getUid());
 
                                 HashMap<String, Builder> map = new HashMap<>();
+                                FirebaseReference.builderReference.child(user.getUid()).setValue(
+                                    new Builder("Siddharth","9873142234" , user.getUid(),
+                                           email , new ArrayList<String>())
+                                );
 
-
-                                updateUI();
+                                //updateUI();
 
                             }
                         }
@@ -86,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI() {
        // startActivity(new Intent(LoginActivity.this, ));
+        startActivity(new Intent(this,FirstViewActivity.class));
     }
 
     private void checkLoginStatus() {
@@ -95,7 +102,12 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    updateUI();
+                   // updateUI();
+                    FirebaseReference.builderReference.child(user.getUid()).setValue(
+                            new Builder("Siddharth","9873142234" , user.getUid(),
+                                    "sid5869@gmail.com", new ArrayList<String>()));
+
+
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out
