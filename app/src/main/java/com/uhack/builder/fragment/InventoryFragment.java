@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -91,6 +92,15 @@ public class InventoryFragment extends Fragment {
             }
         });
 
+
+        (view.findViewById(R.id.fab_add_inventory)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                AddInventoryFragment addInventoryFragment = new AddInventoryFragment(groupID);
+                addInventoryFragment.show(fragmentManager,"TAG");
+            }
+        });
         return view;
     }
 

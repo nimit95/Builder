@@ -34,6 +34,9 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
     private Button btnDone;
     private String projectID;
 
+    public AddInventoryFragment(String projectID) {
+        this.projectID = projectID;
+    }
 
     @NonNull
     @Override

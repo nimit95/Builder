@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="bottom|end"
         app:fabSize="normal"
-        android:id="@+id/fab_add_contractor"
+        android:id="@+id/fab_add_inventory"
         android:src="@drawable/ic_add_black_24dp"
         android:layout_height="wrap_content" />
 

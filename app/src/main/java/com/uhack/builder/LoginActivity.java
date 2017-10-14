@@ -75,10 +75,10 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d(TAG, "onComplete: " + user.getUid());
 
                                 HashMap<String, Builder> map = new HashMap<>();
-                                FirebaseReference.builderReference.child(user.getUid()).setValue(
+                               /* FirebaseReference.builderReference.child(user.getUid()).setValue(
                                     new Builder("Siddharth","9873142234" , user.getUid(),
                                            email , new ArrayList<String>())
-                                );
+                                );*/
 
                                 updateUI();
 
