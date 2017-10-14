@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Contractor {
     private String contractorID, contractorName, contractorEMAIL;
-    private int skillType,pay;
+    private int skillType;
     private ArrayList<String> workerIDs;
 
     public Contractor(String contractorID, String contractorName, String contractorEMAIL, int skillType, int pay, ArrayList<String> workerIDs) {
@@ -16,7 +16,6 @@ public class Contractor {
         this.contractorName = contractorName;
         this.contractorEMAIL = contractorEMAIL;
         this.skillType = skillType;
-        this.pay = pay;
         this.workerIDs = workerIDs;
     }
 
@@ -53,13 +52,6 @@ public class Contractor {
         this.skillType = skillType;
     }
 
-    public int getPay() {
-        return pay;
-    }
-
-    public void setPay(int pay) {
-        this.pay = pay;
-    }
 
     public ArrayList<String> getWorkerIDs() {
         return workerIDs;

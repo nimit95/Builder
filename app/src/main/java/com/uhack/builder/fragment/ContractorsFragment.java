@@ -28,10 +28,11 @@ public class ContractorsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contractors, container, false);
-        view.setOnClickListener(new View.OnClickListener() {
+        fabAddContractor = (FloatingActionButton) view.findViewById(R.id.fab_add_contractor);
+        fabAddContractor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getChildFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 AddContractor addContractor = new AddContractor();
                 addContractor.show(fragmentManager,"TAG");
             }

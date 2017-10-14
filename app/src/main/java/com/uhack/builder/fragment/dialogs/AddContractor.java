@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,22 +13,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
-import com.uhack.builder.adapters.ContractorsListAdapter;
 import com.uhack.builder.model.Contractor;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by piyush on 14/10/17.
  */
 
 public class AddContractor extends DialogFragment {
+    private FloatingActionButton fabAddContractor;
     private static ArrayList<String> listOfContractorTypes;
     private Spinner spnContractorType,spnContractorList;
     @NonNull
@@ -56,6 +58,7 @@ public class AddContractor extends DialogFragment {
     }
 
     private void initializer(View view) {
+        listOfContractorTypes = new ArrayList<>();
         listOfContractorTypes.add("Carpenter");
         listOfContractorTypes.add("Electrician");
         listOfContractorTypes.add("Plumber");
@@ -63,6 +66,7 @@ public class AddContractor extends DialogFragment {
         listOfContractorTypes.add("Mason");
         spnContractorList = (Spinner)view.findViewById(R.id.spn_contractor_list);
         spnContractorType = (Spinner)view.findViewById(R.id.spn_contractor_type);
+        fabAddContractor = (FloatingActionButton)view.findViewById(R.id.fab_add_contractor);
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
                 (getActivity(), android.R.layout.simple_spinner_item,
@@ -85,9 +89,10 @@ public class AddContractor extends DialogFragment {
         });
     }
 
-    private void updateOtherSpinner(int position) {
+    private void updateOtherSpinner(final int position) {
         final ArrayList<Contractor>  contractorList = new ArrayList<>();
         // get query result in above;
+
 
         FirebaseReference.contractorReference.child(String.valueOf(position)).addValueEventListener(
                 new ValueEventListener() {
@@ -104,6 +109,7 @@ public class AddContractor extends DialogFragment {
                         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                                 .simple_spinner_dropdown_item);
                         spnContractorType.setAdapter(spinnerArrayAdapter);
+                        FirebaseReference.contractorReference.child(String.valueOf(position)).removeEventListener(this);
                     }
 
                     @Override
