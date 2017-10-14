@@ -15,10 +15,7 @@ public class FirebaseReference extends Application {
     public static FirebaseDatabase database;
     public static DatabaseReference projectReference;
     public static DatabaseReference builderReference;
-
     public static DatabaseReference inventoryReference;
-
-
     public static DatabaseReference contractorReference;
 
     @Override
