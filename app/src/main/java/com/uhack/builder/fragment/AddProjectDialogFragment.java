@@ -87,6 +87,7 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
                 new ArrayList<Integer>(),
                 new ArrayList<Integer>()
         ));
+
     }
 
     private static ArrayList<String> getList(){
