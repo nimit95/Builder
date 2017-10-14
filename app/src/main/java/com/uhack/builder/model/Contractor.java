@@ -7,15 +7,18 @@ import java.util.ArrayList;
  */
 
 public class Contractor {
-    private String contractorID, contractorName, contractorEMAIL;
+    private String contractorID, Name, email,address;
     private int skillType;
+    private int mobile;
     private ArrayList<String> workerIDs;
 
-    public Contractor(String contractorID, String contractorName, String contractorEMAIL, int skillType, int pay, ArrayList<String> workerIDs) {
+    public Contractor(String contractorID, String name, String email, String address, int skillType, int mobile, ArrayList<String> workerIDs) {
         this.contractorID = contractorID;
-        this.contractorName = contractorName;
-        this.contractorEMAIL = contractorEMAIL;
+        Name = name;
+        this.email = email;
+        this.address = address;
         this.skillType = skillType;
+        this.mobile = mobile;
         this.workerIDs = workerIDs;
     }
 
@@ -28,20 +31,28 @@ public class Contractor {
         this.contractorID = contractorID;
     }
 
-    public String getContractorName() {
-        return contractorName;
+    public String getName() {
+        return Name;
     }
 
-    public void setContractorName(String contractorName) {
-        this.contractorName = contractorName;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public String getContractorEMAIL() {
-        return contractorEMAIL;
+    public String getEmail() {
+        return email;
     }
 
-    public void setContractorEMAIL(String contractorEMAIL) {
-        this.contractorEMAIL = contractorEMAIL;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getSkillType() {
@@ -52,6 +63,13 @@ public class Contractor {
         this.skillType = skillType;
     }
 
+    public int getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(int mobile) {
+        this.mobile = mobile;
+    }
 
     public ArrayList<String> getWorkerIDs() {
         return workerIDs;
@@ -60,4 +78,6 @@ public class Contractor {
     public void setWorkerIDs(ArrayList<String> workerIDs) {
         this.workerIDs = workerIDs;
     }
+
+    public Contractor(){}
 }

@@ -36,7 +36,7 @@ public class AddContractor extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.setTitle("Add New Project");
+        dialog.setTitle("Add New Contractor");
         return dialog;
     }
 
@@ -49,7 +49,7 @@ public class AddContractor extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().setTitle("Add New Project");
+        getDialog().setTitle("Add New COntractor");
 
         View view= inflater.inflate(R.layout.fragment_add_contractor, container);
 
@@ -64,6 +64,7 @@ public class AddContractor extends DialogFragment {
         listOfContractorTypes.add("Plumber");
         listOfContractorTypes.add("Painter");
         listOfContractorTypes.add("Mason");
+
         spnContractorList = (Spinner)view.findViewById(R.id.spn_contractor_list);
         spnContractorType = (Spinner)view.findViewById(R.id.spn_contractor_type);
         fabAddContractor = (FloatingActionButton)view.findViewById(R.id.fab_add_contractor);
@@ -100,8 +101,11 @@ public class AddContractor extends DialogFragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         ArrayList<String> namesOfContractors = new ArrayList<>();
 
+                        for(DataSnapshot data: dataSnapshot.getChildren() ){
+                            contractorList.add(data.getValue(Contractor.class));
+                        }
                         for(int i=0;i<contractorList.size();i++)
-                            namesOfContractors.add(contractorList.get(i).getContractorName());
+                            namesOfContractors.add(contractorList.get(i).getName());
 
                         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
                                 (getActivity(), android.R.layout.simple_spinner_item,

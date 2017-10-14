@@ -1,11 +1,13 @@
 package com.uhack.builder;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ public class FirstViewActivity extends AppCompatActivity implements FirebaseLink
     private ArrayList<Project> projectList;
 
     private ProjectListAdapter projectListAdapter;
+    private FloatingActionButton fabAddProject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class FirstViewActivity extends AppCompatActivity implements FirebaseLink
         setContentView(R.layout.activity_first_view);
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_project_list);
+        fabAddProject = (FloatingActionButton) findViewById(R.id.fab_add_project);
         superPrefs = new SuperPrefs(this);
 
 
@@ -42,6 +46,14 @@ public class FirstViewActivity extends AppCompatActivity implements FirebaseLink
         listOfProjectIDs = new ArrayList<>();
         setUpAdapter();
 
+        fabAddProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                AddProjectDialogFragment addProjectDialogFragment = new AddProjectDialogFragment();
+                addProjectDialogFragment.show(fragmentManager,"TAG");
+            }
+        });
         /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         AddProjectDialogFragment addProjectDialogFragment = new AddProjectDialogFragment();
