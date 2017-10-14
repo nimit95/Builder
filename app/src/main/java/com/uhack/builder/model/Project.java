@@ -14,6 +14,10 @@ public class Project {
     private String builderID;
     private ArrayList<Integer> inventoryIDs,contractorIDs,workerIDs;
 
+    public Project() {
+
+    }
+
     public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, ArrayList<Integer> inventoryIDs, ArrayList<Integer> contractorIDs, ArrayList<Integer> workerIDs) {
         this.name = name;
         this.address = address;

@@ -75,7 +75,7 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
 
     private void sendProjectDetailsToFirebase() {
         SuperPrefs superPrefs = new SuperPrefs(getActivity());
-        DatabaseReference databaseReference = FirebaseReference.projectReference.child(superPrefs.getString(BUILDER_ID))
+        DatabaseReference databaseReference = FirebaseReference.projectReference
                 .push();
         databaseReference.setValue(new Project(
            etProjectName.getText().toString(),
