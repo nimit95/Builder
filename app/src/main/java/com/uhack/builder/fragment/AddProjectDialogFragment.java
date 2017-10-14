@@ -60,7 +60,17 @@ public class AddProjectDialogFragment extends DialogFragment {
         etProjectExpense = (EditText) view.findViewById(R.id.et_project_current_expense);
         btnDone = (Button) view.findViewById(R.id.btn_done);
         lvContractors = (ListView) view.findViewById(R.id.lv_contractors);
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendProjectDetailsToFirebase();
+            }
+        });
     }
+
+    private void sendProjectDetailsToFirebase() {
+    }
+
     private static ArrayList<String> getList(){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("1");
