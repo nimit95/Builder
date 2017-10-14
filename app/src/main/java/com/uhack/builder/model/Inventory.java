@@ -8,6 +8,10 @@ public class Inventory {
     private String InventoryId, InventoryName;
     private int InventoryQty;
 
+    public Inventory(){
+
+    }
+
     public Inventory(String inventoryId, String inventoryName, int inventoryQty) {
 
         InventoryId = inventoryId;
