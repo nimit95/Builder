@@ -5,8 +5,10 @@ package uhack.contractor.model
  */
 
 
+
 data class Project(val Name: String, val Address:String,
                    val TotalBudget:Int, val CurrentExpenses:Int)
 
 data class Builder(val Name: String, val Phone:String, val BuilderId:String,
                    val EmailId: String, val ProjectIDs: ArrayList<String>)
+

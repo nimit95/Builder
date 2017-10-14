@@ -12,8 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
 import com.uhack.builder.adapters.ContractorsListAdapter;
+import com.uhack.builder.model.Project;
+import com.uhack.builder.utils.FirebaseLinks;
+import com.uhack.builder.utils.SuperPrefs;
 
 import java.util.ArrayList;
 
@@ -22,7 +27,7 @@ import java.util.ArrayList;
  * Created by piyush on 14/10/17.
  */
 
-public class AddProjectDialogFragment extends DialogFragment {
+public class AddProjectDialogFragment extends DialogFragment implements FirebaseLinks {
 
     private EditText etProjectName,etProjectAddress,etProjectBudget,etProjectExpense;
     private Button btnDone;
@@ -69,6 +74,20 @@ public class AddProjectDialogFragment extends DialogFragment {
     }
 
     private void sendProjectDetailsToFirebase() {
+        SuperPrefs superPrefs = new SuperPrefs(getActivity());
+        DatabaseReference databaseReference = FirebaseReference.projectReference.child(superPrefs.getString(BUILDER_ID))
+                .push();
+        databaseReference.setValue(new Project(
+           etProjectName.getText().toString(),
+                etProjectAddress.getText().toString(),
+                Integer.parseInt(etProjectBudget.getText().toString()),
+                Integer.parseInt(etProjectExpense.getText().toString()),
+                superPrefs.getString(BUILDER_ID),
+                new ArrayList<Integer>(),
+                new ArrayList<Integer>(),
+                new ArrayList<Integer>()
+        ));
+
     }
 
     private static ArrayList<String> getList(){
