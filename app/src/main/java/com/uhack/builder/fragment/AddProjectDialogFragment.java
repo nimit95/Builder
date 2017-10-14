@@ -85,7 +85,8 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
                 superPrefs.getString(BUILDER_ID),
                 new ArrayList<Integer>(),
                 new ArrayList<Integer>(),
-                new ArrayList<Integer>()
+                new ArrayList<Integer>(),
+                databaseReference.getKey()
         ));
 
         FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))

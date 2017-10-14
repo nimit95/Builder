@@ -25,6 +25,7 @@ public class FirstViewActivity extends AppCompatActivity implements FirebaseLink
     private ArrayList<String> listOfProjectIDs;
     private RecyclerView recyclerView;
     private SuperPrefs superPrefs;
+    private ArrayList<Project> projectList;
 
     private ProjectListAdapter projectListAdapter;
 
@@ -70,21 +71,22 @@ public class FirstViewActivity extends AppCompatActivity implements FirebaseLink
 
 
     private void setUpAdapter() {
+        projectList = new ArrayList<Project>();
         projectListAdapter = new ProjectListAdapter(
-                new ArrayList<Project>(),
+                projectList,
                 FirstViewActivity.this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(projectListAdapter);
     }
 
     private void updateUI() {
-        final ArrayList<Project> alp = new ArrayList<>();
+
         for( int k=0;k<listOfProjectIDs.size();k++){
 
             FirebaseReference.projectReference.child(listOfProjectIDs.get(k)).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    alp.add(dataSnapshot.getValue(Project.class));
+                    projectList.add(dataSnapshot.getValue(Project.class));
                     //FirebaseReference.projectReference.child(listOfProjectIDs.get(i.getVal())).removeEventListener(this);
                     projectListAdapter.notifyDataSetChanged();
                 }

@@ -11,14 +11,14 @@ public class Project {
     private String address;
     private int totalBudget;
     private int currentExpenses;
-    private String builderID;
+    private String builderID, projectID;
     private ArrayList<Integer> inventoryIDs,contractorIDs,workerIDs;
 
     public Project() {
 
     }
 
-    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, ArrayList<Integer> inventoryIDs, ArrayList<Integer> contractorIDs, ArrayList<Integer> workerIDs) {
+    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, ArrayList<Integer> inventoryIDs, ArrayList<Integer> contractorIDs, ArrayList<Integer> workerIDs, String projectId) {
         this.name = name;
         this.address = address;
         this.totalBudget = totalBudget;
@@ -27,6 +27,16 @@ public class Project {
         this.inventoryIDs = inventoryIDs;
         this.contractorIDs = contractorIDs;
         this.workerIDs = workerIDs;
+        this.projectID = projectId;
+    }
+
+    public String getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(String projectID) {
+
+        this.projectID = projectID;
     }
 
     public String getName() {

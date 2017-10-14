@@ -1,6 +1,7 @@
 package com.uhack.builder.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,18 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     public ProjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.project_list_item,parent,false);
-        return new ProjectViewHolder(view);
+
+        final ProjectViewHolder vh = new ProjectViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProjectListAdapter.class);
+                intent.putExtra("project-id", projectArrayList.get(vh.getAdapterPosition()).getProjectID());
+                context.startActivity(intent);
+                //vh.getAdapterPosition();
+            }
+        });
+        return vh;
     }
 
     @Override

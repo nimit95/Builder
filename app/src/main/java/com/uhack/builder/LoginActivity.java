@@ -103,10 +103,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     updateUI();
-                    FirebaseReference.builderReference.child(user.getUid()).setValue(
+                    /*FirebaseReference.builderReference.child(user.getUid()).setValue(
                             new Builder("Siddharth","9873142234" , user.getUid(),
                                     "sid5869@gmail.com", new ArrayList<String>()));
-
+*/
 
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
