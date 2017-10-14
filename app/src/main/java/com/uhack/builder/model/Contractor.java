@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Contractor {
     private String contractorID, Name, email,address;
     private int skillType;
-    private int mobile;
+    private long mobile;
     private ArrayList<String> workerIDs;
 
-    public Contractor(String contractorID, String name, String email, String address, int skillType, int mobile, ArrayList<String> workerIDs) {
+    public Contractor(String contractorID, String name, String email, String address, int skillType, long mobile, ArrayList<String> workerIDs) {
         this.contractorID = contractorID;
         Name = name;
         this.email = email;
@@ -63,11 +63,11 @@ public class Contractor {
         this.skillType = skillType;
     }
 
-    public int getMobile() {
+    public long getMobile() {
         return mobile;
     }
 
-    public void setMobile(int mobile) {
+    public void setMobile(long mobile) {
         this.mobile = mobile;
     }
 

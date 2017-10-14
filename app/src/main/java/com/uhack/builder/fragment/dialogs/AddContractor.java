@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 
@@ -32,6 +33,7 @@ public class AddContractor extends DialogFragment {
     private FloatingActionButton fabAddContractor;
     private static ArrayList<String> listOfContractorTypes;
     private Spinner spnContractorType,spnContractorList;
+    private Button btnContractorDone;
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class AddContractor extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().setTitle("Add New COntractor");
+        getDialog().setTitle("Add New Contractor");
 
         View view= inflater.inflate(R.layout.fragment_add_contractor, container);
 
@@ -68,6 +70,8 @@ public class AddContractor extends DialogFragment {
         spnContractorList = (Spinner)view.findViewById(R.id.spn_contractor_list);
         spnContractorType = (Spinner)view.findViewById(R.id.spn_contractor_type);
         fabAddContractor = (FloatingActionButton)view.findViewById(R.id.fab_add_contractor);
+        btnContractorDone = (Button)view.findViewById(R.id.btn_contractor_done);
+
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
                 (getActivity(), android.R.layout.simple_spinner_item,
@@ -112,7 +116,7 @@ public class AddContractor extends DialogFragment {
                                         namesOfContractors); //selected item will look like a spinner set from XML
                         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                                 .simple_spinner_dropdown_item);
-                        spnContractorType.setAdapter(spinnerArrayAdapter);
+                        spnContractorList.setAdapter(spinnerArrayAdapter);
                         FirebaseReference.contractorReference.child(String.valueOf(position)).removeEventListener(this);
                     }
 

@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
 import com.uhack.builder.adapters.ContractorsListAdapter;
+import com.uhack.builder.model.Contractor;
 import com.uhack.builder.model.Project;
 import com.uhack.builder.utils.FirebaseLinks;
 import com.uhack.builder.utils.SuperPrefs;
@@ -64,7 +65,6 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
         etProjectBudget = (EditText) view.findViewById(R.id.et_project_total_expense);
         etProjectExpense = (EditText) view.findViewById(R.id.et_project_current_expense);
         btnDone = (Button) view.findViewById(R.id.btn_done);
-        lvContractors = (ListView) view.findViewById(R.id.lv_contractors);
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,10 +83,10 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
                 Integer.parseInt(etProjectBudget.getText().toString()),
                 Integer.parseInt(etProjectExpense.getText().toString()),
                 superPrefs.getString(BUILDER_ID),
-                new ArrayList<Integer>(),
-                new ArrayList<Integer>(),
-                new ArrayList<Integer>(),
-                databaseReference.getKey()
+                databaseReference.getKey(),
+                new ArrayList<String>(),
+                new ArrayList<String>(),
+                new ArrayList<Contractor>()
         ));
 
         FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))

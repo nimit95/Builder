@@ -1,6 +1,7 @@
 package com.uhack.builder.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by piyush on 14/10/17.
@@ -12,35 +13,11 @@ public class Project {
     private int totalBudget;
     private int currentExpenses;
     private String builderID, projectID;
-    private ArrayList<Integer> inventoryIDs,contractorIDs,workerIDs;
+    private ArrayList<String> inventoryIDs,workerIDs;
+    private ArrayList<Contractor> contractorData;
 
-    public Project() {
-
-    }
-
-    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, ArrayList<Integer> inventoryIDs, ArrayList<Integer> contractorIDs, ArrayList<Integer> workerIDs, String projectId) {
-        this.name = name;
-        this.address = address;
-        this.totalBudget = totalBudget;
-        this.currentExpenses = currentExpenses;
-        this.builderID = builderID;
-        this.inventoryIDs = inventoryIDs;
-        this.contractorIDs = contractorIDs;
-        this.workerIDs = workerIDs;
-        this.projectID = projectId;
-    }
-
-    public String getProjectID() {
-        return projectID;
-    }
-
-    public void setProjectID(String projectID) {
-
-        this.projectID = projectID;
-    }
-
+    public Project(){}
     public String getName() {
-
         return name;
     }
 
@@ -80,27 +57,48 @@ public class Project {
         this.builderID = builderID;
     }
 
-    public ArrayList<Integer> getInventoryIDs() {
+    public String getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
+    }
+
+    public ArrayList<String> getInventoryIDs() {
         return inventoryIDs;
     }
 
-    public void setInventoryIDs(ArrayList<Integer> inventoryIDs) {
+    public void setInventoryIDs(ArrayList<String> inventoryIDs) {
         this.inventoryIDs = inventoryIDs;
     }
 
-    public ArrayList<Integer> getContractorIDs() {
-        return contractorIDs;
-    }
-
-    public void setContractorIDs(ArrayList<Integer> contractorIDs) {
-        this.contractorIDs = contractorIDs;
-    }
-
-    public ArrayList<Integer> getWorkerIDs() {
+    public ArrayList<String> getWorkerIDs() {
         return workerIDs;
     }
 
-    public void setWorkerIDs(ArrayList<Integer> workerIDs) {
+    public void setWorkerIDs(ArrayList<String> workerIDs) {
         this.workerIDs = workerIDs;
+    }
+
+    public ArrayList<Contractor> getContractorData() {
+        return contractorData;
+    }
+
+    public void setContractorData(ArrayList<Contractor> contractorData) {
+        this.contractorData = contractorData;
+    }
+
+    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, String projectID, ArrayList<String> inventoryIDs, ArrayList<String> workerIDs, ArrayList<Contractor> contractorData) {
+
+        this.name = name;
+        this.address = address;
+        this.totalBudget = totalBudget;
+        this.currentExpenses = currentExpenses;
+        this.builderID = builderID;
+        this.projectID = projectID;
+        this.inventoryIDs = inventoryIDs;
+        this.workerIDs = workerIDs;
+        this.contractorData = contractorData;
     }
 }
