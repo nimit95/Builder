@@ -64,7 +64,7 @@
 
         <Spinner
             android:layout_weight="1"
-
+            android:id="@+id/spn_contractor_time_duration"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></Spinner>
 

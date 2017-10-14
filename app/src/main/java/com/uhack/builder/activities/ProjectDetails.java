@@ -143,7 +143,7 @@ public class ProjectDetails extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
 
             if(position ==0)
-                return new ContractorsFragment();
+                return new ContractorsFragment(getIntent().getStringExtra("project-id"));
             return PlaceholderFragment.newInstance(position + 1);
 
         }

@@ -3,6 +3,8 @@ package com.uhack.builder.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uhack.contractor.model.ContractorTemp;
+
 /**
  * Created by piyush on 14/10/17.
  */
@@ -14,7 +16,7 @@ public class Project {
     private int currentExpenses;
     private String builderID, projectID;
     private ArrayList<String> inventoryIDs,workerIDs;
-    private ArrayList<Contractor> contractorData;
+    private ArrayList<ContractorTemp> contractorData;
 
     public Project(){}
     public String getName() {
@@ -81,16 +83,7 @@ public class Project {
         this.workerIDs = workerIDs;
     }
 
-    public ArrayList<Contractor> getContractorData() {
-        return contractorData;
-    }
-
-    public void setContractorData(ArrayList<Contractor> contractorData) {
-        this.contractorData = contractorData;
-    }
-
-    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, String projectID, ArrayList<String> inventoryIDs, ArrayList<String> workerIDs, ArrayList<Contractor> contractorData) {
-
+    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, String projectID, ArrayList<String> inventoryIDs, ArrayList<String> workerIDs, ArrayList<ContractorTemp> contractorData) {
         this.name = name;
         this.address = address;
         this.totalBudget = totalBudget;
@@ -99,6 +92,15 @@ public class Project {
         this.projectID = projectID;
         this.inventoryIDs = inventoryIDs;
         this.workerIDs = workerIDs;
+        this.contractorData = contractorData;
+    }
+
+    public ArrayList<ContractorTemp> getContractorData() {
+
+        return contractorData;
+    }
+
+    public void setContractorData(ArrayList<ContractorTemp> contractorData) {
         this.contractorData = contractorData;
     }
 }

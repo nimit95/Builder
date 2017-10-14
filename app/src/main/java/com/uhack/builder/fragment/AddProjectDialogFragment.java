@@ -23,6 +23,8 @@ import com.uhack.builder.utils.SuperPrefs;
 
 import java.util.ArrayList;
 
+import uhack.contractor.model.ContractorTemp;
+
 
 /**
  * Created by piyush on 14/10/17.
@@ -86,7 +88,7 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
                 databaseReference.getKey(),
                 new ArrayList<String>(),
                 new ArrayList<String>(),
-                new ArrayList<Contractor>()
+                new ArrayList<ContractorTemp>()
         ));
 
         FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))
