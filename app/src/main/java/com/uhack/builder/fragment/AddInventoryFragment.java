@@ -45,7 +45,7 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.setTitle("Add New Project");
+        dialog.setTitle("Add New Inventory");
         return dialog;
     }
 
@@ -58,7 +58,7 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().setTitle("Add New Project");
+        getDialog().setTitle("Add New Inventory");
 
         View view = inflater.inflate(R.layout.fragment_add_inventory, container);
         initializer(view);

@@ -68,7 +68,7 @@ public class AddTransactionDialogFragment extends DialogFragment implements Fire
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().setTitle("Add New Project");
+        getDialog().setTitle("Transaction");
 
         View view = inflater.inflate(R.layout.fragment_add_transaction_dialog, container);
         initializer(view);
@@ -81,7 +81,7 @@ public class AddTransactionDialogFragment extends DialogFragment implements Fire
         etComments = view.findViewById(R.id.et_inventory_comments);
         rgIncDec = view.findViewById(R.id.radioGroup);
 
-        tvCurrQty = view.findViewById(R.id.et_inventory_qty);
+        tvCurrQty = view.findViewById(R.id.tv_cur_qty);
 
         tvCurrQty.setText(tvCurrQty.getText().toString()+ " - " + currAmt);
         btnDone = (Button) view.findViewById(R.id.btn_done);
