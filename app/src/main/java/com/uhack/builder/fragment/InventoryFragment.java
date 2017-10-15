@@ -127,7 +127,7 @@ public class InventoryFragment extends Fragment {
                         }
                     }
                     if(flag)
-                        inventoryArrayList.add(dataSnapshot.getValue(Inventory.class));
+                    inventoryArrayList.add(dataSnapshot.getValue(Inventory.class));
                     Log.d("Inv",inventoryArrayList.get(inventoryArrayList.size()-1).getInventoryQty()+"");
                     inventoryListAdapter.notifyDataSetChanged();
                 }
