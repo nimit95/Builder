@@ -169,7 +169,7 @@ public class AddContractor extends DialogFragment {
                         Integer.parseInt(etContractorPayableAmount.getText().toString()),
                         Integer.parseInt(etContractorDuration.getText().toString()),
                         spnContractorTimeDuration.getSelectedItem().toString(),
-                        spnContractorList.getSelectedItem().toString(),
+                        contractorList.get(spnContractorList.getSelectedItemPosition()).getName(),
                         spnContractorType.getSelectedItemPosition()
                         );
 

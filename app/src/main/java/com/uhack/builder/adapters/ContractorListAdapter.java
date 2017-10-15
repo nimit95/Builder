@@ -42,7 +42,22 @@ public class ContractorListAdapter extends RecyclerView.Adapter<ContractorListAd
         holder.tvCPrice.setText(""+projectArrayList.get(position).getAmount());
         holder.tvCDuration.setText(""+projectArrayList.get(position).getDuration());
         holder.tvCName.setText(""+projectArrayList.get(position).getName());
-        holder.tvCType.setText(""+projectArrayList.get(position).getType());
+
+        int ctype =projectArrayList.get(position).getType();
+        String type="";
+
+        if(ctype==0)
+            type="Carpenter";
+        if(ctype==1)
+            type="Electritian";
+        if(ctype==2)
+            type="Plumber";
+        if(ctype==3)
+            type="Painter";
+        else if(ctype==4)
+            type="Mason";
+
+        holder.tvCType.setText(""+ type);
     }
 
     @Override
@@ -57,7 +72,7 @@ public class ContractorListAdapter extends RecyclerView.Adapter<ContractorListAd
             tvCName = (TextView) itemView.findViewById(R.id.tv_cname);
             tvCDuration = (TextView) itemView.findViewById(R.id.tv_cduration);
             tvCPrice = (TextView) itemView.findViewById(R.id.tv_cprice);
-            tvCType = (TextView) itemView.findViewById(R.id.tv_cprice);
+            tvCType = (TextView) itemView.findViewById(R.id.tv_ctype);
         }
     }
 }
