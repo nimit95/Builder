@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,7 @@ public class AddTransactionDialogFragment extends DialogFragment implements Fire
     private RadioGroup rgIncDec;
     private RadioButton selected;
 
+    private TextView tvCurrQty;
     private int currAmt;
     private String inventoryID;
 
@@ -79,6 +81,9 @@ public class AddTransactionDialogFragment extends DialogFragment implements Fire
         etComments = view.findViewById(R.id.et_inventory_comments);
         rgIncDec = view.findViewById(R.id.radioGroup);
 
+        tvCurrQty = view.findViewById(R.id.et_inventory_qty);
+
+        tvCurrQty.setText(tvCurrQty.getText().toString()+ " - " + currAmt);
         btnDone = (Button) view.findViewById(R.id.btn_done);
         // lvContractors = (ListView) view.findViewById(R.id.lv_contractors);
         btnDone.setOnClickListener(new View.OnClickListener() {
