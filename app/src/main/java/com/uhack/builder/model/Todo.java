@@ -8,14 +8,25 @@ public class Todo {
     private String Task, builderID, contractorID, todoID;
     private int complete;
     private long dueDate;
+    private String projectId;
 
-    public Todo(String task, String builderID, String contractorID, String todoID, int complete, long dueDate) {
+    public Todo(){}
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
+
+    public Todo(String task, String builderID, String contractorID, String todoID, int complete, long dueDate, String projectId) {
         Task = task;
         this.builderID = builderID;
         this.contractorID = contractorID;
         this.todoID = todoID;
         this.complete = complete;
         this.dueDate = dueDate;
+        this.projectId = projectId;
     }
 
     public String getTask() {

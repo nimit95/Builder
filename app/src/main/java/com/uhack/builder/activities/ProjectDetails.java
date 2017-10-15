@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.uhack.builder.R;
 import com.uhack.builder.fragment.ContractorsFragment;
 import com.uhack.builder.fragment.InventoryFragment;
+import com.uhack.builder.fragment.TodosFragment;
 import com.uhack.builder.fragment.dialogs.AddContractor;
 
 public class ProjectDetails extends AppCompatActivity {
@@ -140,7 +141,7 @@ public class ProjectDetails extends AppCompatActivity {
                 return InventoryFragment.newInstance(getIntent().getStringExtra("project-id"));
             if(position ==0)
                 return new ContractorsFragment(getIntent().getStringExtra("project-id"));
-            return PlaceholderFragment.newInstance(position + 1);
+            return new TodosFragment();
 
         }
 
