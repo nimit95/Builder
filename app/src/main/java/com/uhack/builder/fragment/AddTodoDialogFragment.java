@@ -18,7 +18,6 @@ import android.widget.ListView;
 import com.google.firebase.database.DatabaseReference;
 import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
-import com.uhack.builder.adapters.ContractorsListAdapter;
 import com.uhack.builder.model.Project;
 import com.uhack.builder.utils.FirebaseLinks;
 import com.uhack.builder.utils.SuperPrefs;
@@ -52,7 +51,6 @@ public class AddTodoDialogFragment extends DialogFragment implements FirebaseLin
 
         View view= inflater.inflate(R.layout.fragment_add_project, container);
         initializer(view);
-        lvContractors.setAdapter(new ContractorsListAdapter(getList(),getActivity()));
         return view;
     }
 
@@ -62,7 +60,6 @@ public class AddTodoDialogFragment extends DialogFragment implements FirebaseLin
         etProjectBudget = (EditText) view.findViewById(R.id.et_project_total_expense);
         etProjectExpense = (EditText) view.findViewById(R.id.et_project_current_expense);
         btnDone = (Button) view.findViewById(R.id.btn_done);
-        lvContractors = (ListView) view.findViewById(R.id.lv_contractors);
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +72,7 @@ public class AddTodoDialogFragment extends DialogFragment implements FirebaseLin
         SuperPrefs superPrefs = new SuperPrefs(getActivity());
         DatabaseReference databaseReference = FirebaseReference.projectReference
                 .push();
+        /*
         databaseReference.setValue(new Project(
                 etProjectName.getText().toString(),
                 etProjectAddress.getText().toString(),
@@ -87,7 +85,7 @@ public class AddTodoDialogFragment extends DialogFragment implements FirebaseLin
                 new ArrayList<String>()
 
         ));
-
+*/
         FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))
                 .child(FirebaseLinks.PROJECT_IDS).push().setValue(databaseReference.getKey());
         getDialog().dismiss();

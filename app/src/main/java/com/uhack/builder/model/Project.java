@@ -2,6 +2,8 @@ package com.uhack.builder.model;
 
 import java.util.ArrayList;
 
+import uhack.contractor.model.ContractorTemp;
+
 /**
  * Created by piyush on 14/10/17.
  */
@@ -19,16 +21,17 @@ public class Project {
 
     }
 
-    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, ArrayList<Integer> inventoryIDs, ArrayList<Integer> contractorIDs, ArrayList<Integer> workerIDs, String projectId) {
+
+    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, String projectID, ArrayList<String> inventoryIDs, ArrayList<String> workerIDs, ArrayList<ContractorTemp> contractorData) {
         this.name = name;
         this.address = address;
         this.totalBudget = totalBudget;
         this.currentExpenses = currentExpenses;
         this.builderID = builderID;
+        this.projectID = projectID;
         this.inventoryIDs = inventoryIDs;
-        this.contractorIDs = contractorIDs;
         this.workerIDs = workerIDs;
-        this.projectID = projectId;
+        this.contractorData = contractorData;
     }
 
     public String getProjectID() {
@@ -81,13 +84,6 @@ public class Project {
         this.builderID = builderID;
     }
 
-    public String getProjectID() {
-        return projectID;
-    }
-
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
 
     public ArrayList<String> getInventoryIDs() {
         return inventoryIDs;
@@ -105,17 +101,6 @@ public class Project {
         this.workerIDs = workerIDs;
     }
 
-    public Project(String name, String address, int totalBudget, int currentExpenses, String builderID, String projectID, ArrayList<String> inventoryIDs, ArrayList<String> workerIDs, ArrayList<ContractorTemp> contractorData) {
-        this.name = name;
-        this.address = address;
-        this.totalBudget = totalBudget;
-        this.currentExpenses = currentExpenses;
-        this.builderID = builderID;
-        this.projectID = projectID;
-        this.inventoryIDs = inventoryIDs;
-        this.workerIDs = workerIDs;
-        this.contractorData = contractorData;
-    }
 
     public ArrayList<ContractorTemp> getContractorData() {
 

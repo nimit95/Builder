@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI() {
        // startActivity(new Intent(LoginActivity.this, ));
         startActivity(new Intent(this,FirstViewActivity.class));
+        finish();
     }
 
     private void checkLoginStatus() {

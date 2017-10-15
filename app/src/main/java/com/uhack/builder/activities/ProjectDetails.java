@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.uhack.builder.R;
 import com.uhack.builder.fragment.ContractorsFragment;
+import com.uhack.builder.fragment.InventoryFragment;
 import com.uhack.builder.fragment.dialogs.AddContractor;
 
 public class ProjectDetails extends AppCompatActivity {
