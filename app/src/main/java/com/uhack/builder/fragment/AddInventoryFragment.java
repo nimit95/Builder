@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
 import com.uhack.builder.adapters.ContractorsListAdapter;
@@ -57,7 +60,7 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().setTitle("Add New Project");
 
-        View view = inflater.inflate(R.layout.fragment_add_project, container);
+        View view = inflater.inflate(R.layout.fragment_add_inventory, container);
         initializer(view);
         // lvContractors.setAdapter(new ContractorsListAdapter(getList(),getActivity()));
         return view;
@@ -79,7 +82,7 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
 
     private void sendProjectDetailsToFirebase() {
         // SuperPrefs superPrefs = new SuperPrefs(getActivity());
-        DatabaseReference databaseReference = FirebaseReference.inventoryReference
+        final DatabaseReference databaseReference = FirebaseReference.inventoryReference
                 .push();
         databaseReference.setValue(new Inventory(
                 databaseReference.getKey(),
@@ -89,7 +92,27 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
 
        /* FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))
                 .child(FirebaseLinks.PROJECT_IDS).push().setValue(databaseReference.getKey());*/
-        FirebaseReference.projectReference.child(projectID).child("inventoryIDs").push().setValue(databaseReference.getKey());
+
+        FirebaseReference.projectReference.child(projectID).child("inventoryIDs").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                ArrayList<String> stringArrayList = new ArrayList<String>();
+                if(dataSnapshot!=null) {
+                    for (DataSnapshot data : dataSnapshot.getChildren())
+                        stringArrayList.add(data.getValue(String.class));
+                }
+                stringArrayList.add(databaseReference.getKey());
+                FirebaseReference.projectReference.child(projectID).child("inventoryIDs").removeEventListener(this);
+                FirebaseReference.projectReference.child(projectID).child("inventoryIDs").setValue(stringArrayList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         getDialog().dismiss();
     }

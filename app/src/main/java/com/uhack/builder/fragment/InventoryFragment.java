@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class InventoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             groupID = getArguments().getString(ARG_PARAM1);
-           // mParam2 = getArguments().getString(ARG_PARAM2);
+            // mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -60,6 +61,7 @@ public class InventoryFragment extends Fragment {
     private ArrayList<String> inventoryIDs;
     private RecyclerView recyclerView;
     private InventoryListAdapter inventoryListAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +70,8 @@ public class InventoryFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rv_inventory_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+       // recyclerView.setNestedScrollingEnabled(false);
+
 
         inventoryArrayList = new ArrayList<>();
         inventoryIDs = new ArrayList<>();
@@ -78,9 +82,12 @@ public class InventoryFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                inventoryArrayList.clear();
-                for(DataSnapshot data:dataSnapshot.getChildren()){
-                    inventoryIDs.add(data.getValue(String.class));
+                inventoryIDs.clear();
+
+                if(dataSnapshot!=null) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        inventoryIDs.add(data.getValue(String.class));
+                    }
                 }
 
                 updateUI();
@@ -98,7 +105,7 @@ public class InventoryFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 AddInventoryFragment addInventoryFragment = new AddInventoryFragment(groupID);
-                addInventoryFragment.show(fragmentManager,"TAG");
+                addInventoryFragment.show(fragmentManager, "TAG");
             }
         });
         return view;
@@ -106,11 +113,22 @@ public class InventoryFragment extends Fragment {
 
     private void updateUI() {
         inventoryArrayList.clear();
-        for (int i=0;i<inventoryIDs.size();i++) {
+        for (int i = 0; i < inventoryIDs.size(); i++) {
             FirebaseReference.inventoryReference.child(inventoryIDs.get(i)).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    inventoryArrayList.add(dataSnapshot.getValue(Inventory.class));
+
+                    Inventory currInv = dataSnapshot.getValue(Inventory.class);
+                    Boolean flag = true;
+                    for(int i=0;i<inventoryArrayList.size();i++){
+                        if(currInv.getInventoryId().compareTo(inventoryArrayList.get(i).getInventoryId())==0){
+                            flag = false;
+                            inventoryArrayList.set(i, currInv);
+                        }
+                    }
+                    if(flag)
+                        inventoryArrayList.add(dataSnapshot.getValue(Inventory.class));
+                    Log.d("Inv",inventoryArrayList.get(inventoryArrayList.size()-1).getInventoryQty()+"");
                     inventoryListAdapter.notifyDataSetChanged();
                 }
 

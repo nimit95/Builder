@@ -1,6 +1,9 @@
 package com.uhack.builder.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.uhack.builder.R;
+import com.uhack.builder.fragment.AddInventoryFragment;
+import com.uhack.builder.fragment.AddTransactionDialogFragment;
 import com.uhack.builder.model.Inventory;
 
 import java.util.ArrayList;
@@ -31,7 +36,19 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = li.inflate(R.layout.inventory_list_item, parent, false);
 
-        return new InventoryListViewHolder(view);
+        final InventoryListViewHolder vh = new InventoryListViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                AddTransactionDialogFragment addTransactionDialogFragment = new AddTransactionDialogFragment(
+                        inventoryArrayList.get(vh.getAdapterPosition()).getInventoryQty(),
+                        inventoryArrayList.get(vh.getAdapterPosition()).getInventoryId()
+                );
+                addTransactionDialogFragment.show(fragmentManager, "TAG");
+            }
+        });
+        return vh;
     }
 
     @Override
@@ -51,7 +68,7 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         public InventoryListViewHolder(View itemView) {
             super(itemView);
             tvInventoryName = (TextView) itemView.findViewById(R.id.tv_inventory_name);
-            tvQty = (TextView) itemView.findViewById(R.id.et_inventory_qty);
+            tvQty = (TextView) itemView.findViewById(R.id.tv_inventory_qty);
         }
     }
 }

@@ -136,9 +136,9 @@ public class ProjectDetails extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
-            if(position ==0)
+            if(position == 0)
                 return new ContractorsFragment();
-            if(position==1)
+            if(position == 1)
                 return InventoryFragment.newInstance(getIntent().getStringExtra("project-id"));
             return PlaceholderFragment.newInstance(position + 1);
 
@@ -154,11 +154,11 @@ public class ProjectDetails extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "TODOS";
-                case 1:
                     return "CONTRACTOR";
-                case 2:
+                case 1:
                     return "INVENTORY";
+                case 2:
+                    return "TODOS";
             }
             return null;
         }
