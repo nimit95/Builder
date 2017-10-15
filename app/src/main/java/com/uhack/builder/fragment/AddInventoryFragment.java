@@ -10,16 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
-import com.uhack.builder.adapters.ContractorsListAdapter;
 import com.uhack.builder.model.Inventory;
-import com.uhack.builder.model.Project;
 import com.uhack.builder.utils.FirebaseLinks;
-import com.uhack.builder.utils.SuperPrefs;
 
 import java.util.ArrayList;
 

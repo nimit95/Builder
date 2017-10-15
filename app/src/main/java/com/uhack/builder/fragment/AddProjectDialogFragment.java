@@ -15,8 +15,6 @@ import android.widget.ListView;
 import com.google.firebase.database.DatabaseReference;
 import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
-import com.uhack.builder.adapters.ContractorsListAdapter;
-import com.uhack.builder.model.Contractor;
 import com.uhack.builder.model.Project;
 import com.uhack.builder.utils.FirebaseLinks;
 import com.uhack.builder.utils.SuperPrefs;
@@ -57,7 +55,7 @@ public class AddProjectDialogFragment extends DialogFragment implements Firebase
 
         View view= inflater.inflate(R.layout.fragment_add_project, container);
         initializer(view);
-        lvContractors.setAdapter(new ContractorsListAdapter(getList(),getActivity()));
+        //lvContractors.setAdapter(new ContractorsListAdapter(getList(),getActivity()));
         return view;
     }
 

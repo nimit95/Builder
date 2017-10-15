@@ -168,7 +168,9 @@ public class AddContractor extends DialogFragment {
                         contractorList.get(spnContractorList.getSelectedItemPosition()).getContractorID(),
                         Integer.parseInt(etContractorPayableAmount.getText().toString()),
                         Integer.parseInt(etContractorDuration.getText().toString()),
-                        spnContractorTimeDuration.getSelectedItem().toString()
+                        spnContractorTimeDuration.getSelectedItem().toString(),
+                        spnContractorList.getSelectedItem().toString(),
+                        spnContractorType.getSelectedItemPosition()
                         );
 
                 FirebaseReference.projectReference.child(
@@ -185,9 +187,11 @@ public class AddContractor extends DialogFragment {
                         FirebaseReference.projectReference.child(
                                 ContractorsFragment.PROJECT_ID
                         ).child(FirebaseLinks.CONTRACTOR_DATA).removeEventListener(this);
+
                         FirebaseReference.projectReference.child(
                                 ContractorsFragment.PROJECT_ID
                         ).child(FirebaseLinks.CONTRACTOR_DATA).setValue(contractorTempArrayList);
+                        getDialog().dismiss();
                     }
 
                     @Override
