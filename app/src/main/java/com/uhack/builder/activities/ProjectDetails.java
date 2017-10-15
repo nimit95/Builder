@@ -58,14 +58,7 @@ public class ProjectDetails extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
     }
 
@@ -142,6 +135,8 @@ public class ProjectDetails extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
+            if(position == 1)
+                return InventoryFragment.newInstance(getIntent().getStringExtra("project-id"));
             if(position ==0)
                 return new ContractorsFragment(getIntent().getStringExtra("project-id"));
             return PlaceholderFragment.newInstance(position + 1);
@@ -158,11 +153,11 @@ public class ProjectDetails extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "TODOS";
-                case 1:
                     return "CONTRACTOR";
-                case 2:
+                case 1:
                     return "INVENTORY";
+                case 2:
+                    return "TODOS";
             }
             return null;
         }

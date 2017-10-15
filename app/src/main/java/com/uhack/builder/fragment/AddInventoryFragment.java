@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.uhack.builder.FirebaseReference;
 import com.uhack.builder.R;
 import com.uhack.builder.model.Inventory;
@@ -30,12 +33,15 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
     private Button btnDone;
     private String projectID;
 
+    public AddInventoryFragment(String projectID) {
+        this.projectID = projectID;
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.setTitle("Add New Project");
+        dialog.setTitle("Add New Inventory");
         return dialog;
     }
 
@@ -48,9 +54,9 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().setTitle("Add New Project");
+        getDialog().setTitle("Add New Inventory");
 
-        View view = inflater.inflate(R.layout.fragment_add_project, container);
+        View view = inflater.inflate(R.layout.fragment_add_inventory, container);
         initializer(view);
         // lvContractors.setAdapter(new ContractorsListAdapter(getList(),getActivity()));
         return view;
@@ -72,26 +78,40 @@ public class AddInventoryFragment extends DialogFragment implements FirebaseLink
 
     private void sendProjectDetailsToFirebase() {
         // SuperPrefs superPrefs = new SuperPrefs(getActivity());
-        DatabaseReference databaseReference = FirebaseReference.inventoryReference
+        final DatabaseReference databaseReference = FirebaseReference.inventoryReference
                 .push();
         databaseReference.setValue(new Inventory(
                 databaseReference.getKey(),
                 etInventoryName.getText().toString(),
-                etInventoryQty.getText().toString()
+                Integer.parseInt(etInventoryQty.getText().toString())
         ));
 
        /* FirebaseReference.builderReference.child(superPrefs.getString(FirebaseLinks.BUILDER_ID))
                 .child(FirebaseLinks.PROJECT_IDS).push().setValue(databaseReference.getKey());*/
-        FirebaseReference.projectReference.child(projectID).child("inventoryIDs").push().setValue(databaseReference.getKey());
+
+        FirebaseReference.projectReference.child(projectID).child("inventoryIDs").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                ArrayList<String> stringArrayList = new ArrayList<String>();
+                if(dataSnapshot!=null) {
+                    for (DataSnapshot data : dataSnapshot.getChildren())
+                        stringArrayList.add(data.getValue(String.class));
+                }
+                stringArrayList.add(databaseReference.getKey());
+                FirebaseReference.projectReference.child(projectID).child("inventoryIDs").removeEventListener(this);
+                FirebaseReference.projectReference.child(projectID).child("inventoryIDs").setValue(stringArrayList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         getDialog().dismiss();
     }
 
-    private static ArrayList<String> getList() {
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("1");
-        arrayList.add("2");
-        arrayList.add("3");
-        return arrayList;
-    }
+
 }

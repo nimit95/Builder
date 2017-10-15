@@ -6,12 +6,12 @@
     tools:context="com.uhack.builder.fragment.InventoryFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_inventory_list"
+        android:id="@+id/rv_todo_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add_inventory"
+        android:id="@+id/fab_add_todo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add_black_24dp"
@@ -20,7 +20,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="15dp"
         app:layout_anchor="@id/rv_inventory_list"
-         />
+        />
 
 
 </RelativeLayout>

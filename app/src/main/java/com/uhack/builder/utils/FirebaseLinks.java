@@ -9,4 +9,5 @@ public interface FirebaseLinks {
     String BUILDER_ID="builderID";
     String PROJECT_IDS="ProjectIDs";
     String CONTRACTOR_DATA="contractorData";
+    String INVENTORY = "Inventory";
 }

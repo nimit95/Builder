@@ -13,3 +13,7 @@ data class Builder(val Name: String, val Phone:String, val BuilderId:String,
 
 data class ContractorTemp(val contractorId:String="", val amount:Int=0, val duration:Int=0,
                           val time:String="",val Name:String="", val type:Int=0)
+
+
+data class Transaction(val transactionID: String, val inventoryID: String,
+                       val comment: String, val type:Int, val creatorID:String, val delta:Int)
